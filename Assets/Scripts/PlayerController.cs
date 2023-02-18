@@ -41,6 +41,7 @@ public class PlayerController : MonoBehaviour
         {
             transform.Translate(Vector3.right * Time.deltaTime * dashSpeed);
             
+            
         }
         //if Mouse1 is clicks = dash to nearest enemy
 
@@ -59,6 +60,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
+
         if (collision.tag == "Water")
         {
             audioplayer.Play();
