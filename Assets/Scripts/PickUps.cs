@@ -8,17 +8,16 @@ public class PickUps : MonoBehaviour
 
     private void OnTriggerEnter(Collider itemcollision)
     {
+
         if (itemcollision.tag == "Player")
         {
             //Disable item
             gameObject.SetActive(false);
             //Recieve point
-            
-           
+
+
         }
         points++;
         Debug.Log($"Score: {points} ");
-        
-
     }
 }

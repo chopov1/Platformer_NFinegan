@@ -16,7 +16,6 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        
     }
 
     // Update is called once per frame
@@ -25,12 +24,13 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.D))
         {
             //Move Right
-            this.transform.Translate(Vector3.right * Time.deltaTime * speed);
+            transform.Translate(Vector3.right * Time.deltaTime * speed);
+            
         }
         if (Input.GetKey(KeyCode.A))
         {
             //Move Left
-            this.transform.Translate(Vector3.left * Time.deltaTime * speed);
+            transform.Translate(Vector3.left * Time.deltaTime * speed);
         }
         if (isGrounded == true && Input.GetKeyDown(KeyCode.Space))
         {
@@ -39,38 +39,33 @@ public class PlayerController : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.LeftShift))
         {
-            this.transform.Translate(Vector3.right * Time.deltaTime * dashSpeed);
+            transform.Translate(Vector3.right * Time.deltaTime * dashSpeed);
             
         }
+        //if Mouse1 is clicks = dash to nearest enemy
 
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-
         isGrounded = true;
-
-        //if (collision.gameObject.tag == "Spring")
-        //{
-
-        //    rb.AddForce(Vector3.up * SpringForce, ForceMode.Impulse);
-        //}
-
     }
+
 
     private void OnCollisionExit(Collision collision)
     {
         isGrounded = false; 
     }
 
-    private void OnTriggerEnter(Collider deathcollision)
+    private void OnTriggerEnter(Collider collision)
     {
-        if (deathcollision.tag == "Water")
+        if (collision.tag == "Water")
         {
             audioplayer.Play();
             //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             Debug.Log("Game Over");
         }
+        
     }
 }
 
