@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] int speed;
     [SerializeField] int jumpHeight;
     [SerializeField] int dashSpeed = 20;
+    [SerializeField] float score;
     [SerializeField] AudioSource audioplayer;
     private bool isGrounded = false;
     Rigidbody rb;
@@ -47,6 +48,11 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    private void FixedUpdate()
+    {
+       //Jumping code goes here instead
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         isGrounded = true;
@@ -67,7 +73,15 @@ public class PlayerController : MonoBehaviour
             //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             Debug.Log("Game Over");
         }
-        
+
+
+        if (collision.gameObject.CompareTag("Coin"))
+        {
+            score++;
+            collision.gameObject.SetActive(false);
+            Debug.Log($"Score: {score}");
+            Instantiate(collision.gameObject);
+        }
     }
 }
 
