@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] int jumpHeight;
     [SerializeField] int dashSpeed = 20;
     [SerializeField] float score;
+    [SerializeField] int sprintHeight = 30;
     [SerializeField] AudioSource audioplayer;
     private bool isGrounded = false;
     Rigidbody rb;
@@ -81,6 +82,13 @@ public class PlayerController : MonoBehaviour
             collision.gameObject.SetActive(false);
             Debug.Log($"Score: {score}");
             Instantiate(collision.gameObject);
+        }
+
+        //Collision with spring forces player into the air
+        //This is can used to create springs movement in different direction
+        if (collision.gameObject.CompareTag("Spring"))
+        {
+            rb.AddForce(Vector3.up * sprintHeight, ForceMode.Impulse);
         }
     }
 }
