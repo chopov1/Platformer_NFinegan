@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+//*-- Waypoint system created with assistance from 'Coding in Flow' YouTube video
 
 public class PlatformMovement : MonoBehaviour
 {

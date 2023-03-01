@@ -27,7 +27,6 @@ public class PlayerController : MonoBehaviour
         {
             //Move Right
             transform.Translate(Vector3.right * Time.deltaTime * speed);
-            
         }
         if (Input.GetKey(KeyCode.A))
         {
@@ -41,16 +40,15 @@ public class PlayerController : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.LeftShift))
         {
-            transform.Translate(Vector3.right * Time.deltaTime * dashSpeed);
-            
-            
+            transform.Translate(Vector3.right * Time.deltaTime * dashSpeed);           
         }
-        //if Mouse1 is clicks = dash to nearest enemy
+        //*- if Mouse1 is clicked = dash to nearest enemy
+        //More research needed on how to do this -*
 
     }
 
     private void FixedUpdate()
-    {
+    {   
        //Jumping code goes here instead
     }
 
@@ -71,6 +69,7 @@ public class PlayerController : MonoBehaviour
         if (collision.tag == "Water")
         {
             audioplayer.Play();
+            //need to add a delay to game over so you can hear sound effect before reset
             //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             Debug.Log("Game Over");
         }
@@ -85,7 +84,6 @@ public class PlayerController : MonoBehaviour
         }
 
         //Collision with spring forces player into the air
-        //This is can used to create springs movement in different direction
         if (collision.gameObject.CompareTag("Spring"))
         {
             rb.AddForce(Vector3.up * sprintHeight, ForceMode.Impulse);
