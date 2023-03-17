@@ -33,9 +33,11 @@ public class PlayerController : MonoBehaviour
             //Move Left
             transform.Translate(Vector3.left * Time.deltaTime * speed);
         }
+
         if (isGrounded == true && Input.GetKeyDown(KeyCode.Space))
         {
             //Jump
+            //dojump = true;
             rb.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
         }
         if (Input.GetKey(KeyCode.LeftShift))
@@ -47,9 +49,13 @@ public class PlayerController : MonoBehaviour
 
     }
 
+
+    bool dojump = false;
+
     private void FixedUpdate()
     {   
        //Jumping code goes here instead
+
     }
 
     private void OnCollisionEnter(Collision collision)
