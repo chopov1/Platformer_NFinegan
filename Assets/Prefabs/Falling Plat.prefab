@@ -111,7 +111,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae0fa2420d7abc44c83ef59d0192946a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fallTimer: 1
+  fallTimer: 0.5
+  resetPlatform: 2
 --- !u!54 &5984373199888568360
 Rigidbody:
   m_ObjectHideFlags: 0
