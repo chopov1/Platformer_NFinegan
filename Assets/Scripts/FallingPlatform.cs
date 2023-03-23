@@ -17,6 +17,8 @@ public class FallingPlatform : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         startingPosition = transform.position;
+        //kinematic needs to be coded here
+        //kinematic not available for 3D gameObject when comparing to 2D ones
         rb.isKinematic = true;
     }
 
@@ -35,8 +37,8 @@ public class FallingPlatform : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            Invoke("Fall", fallTimer);
-            
+            //invoked only when the gameobject with the player tag collides
+            Invoke("Fall", fallTimer); 
         }
     }
 
