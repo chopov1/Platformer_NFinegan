@@ -10,13 +10,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] int dashSpeed = 20;
     [SerializeField] float score;
     [SerializeField] int sprintHeight = 30;
-    [SerializeField] float jumpForce;
     [SerializeField] AudioSource audioplayer;
-
+    private bool isGrounded = false;
     Rigidbody rb;
-
-    bool canJump;
-    bool isJumping = true;
 
     // Start is called before the first frame update
     void Start()
@@ -38,7 +34,7 @@ public class PlayerController : MonoBehaviour
             transform.Translate(Vector3.left * Time.deltaTime * speed);
         }
 
-        if (isJumping == true && Input.GetKeyDown(KeyCode.Space))
+        if (isGrounded == true && Input.GetKeyDown(KeyCode.Space))
         {
             //Jump
             //dojump = true;
@@ -48,26 +44,28 @@ public class PlayerController : MonoBehaviour
         {
             transform.Translate(Vector3.right * Time.deltaTime * dashSpeed);           
         }
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            isJumping = true;
-        }
+        //*- if Mouse1 is clicked = dash to nearest enemy
+        //More research needed on how to do this -*
 
     }
 
 
     private void FixedUpdate()
-    {
-        if (isJumping && canJump)
-        {
-            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            isJumping = false;
-            canJump = false;
-        }
+    {   
+       //Jumping code goes here instead
 
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        isGrounded = true;
+    }
+
+
+    private void OnCollisionExit(Collision collision)
+    {
+        isGrounded = false; 
+    }
 
     private void OnTriggerEnter(Collider collision)
     {
