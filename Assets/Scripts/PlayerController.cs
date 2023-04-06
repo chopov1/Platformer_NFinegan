@@ -5,13 +5,28 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
+    //Player movement speed
     [SerializeField] int speed;
+
+    //Player jump height
     [SerializeField] int jumpHeight;
+
+    //Player dash speed
     [SerializeField] int dashSpeed = 20;
+
+    //Score tracker
     [SerializeField] float score;
-    [SerializeField] int sprintHeight = 30;
+
+    //Player spring height
+    [SerializeField] int springHeight = 30;
+
+    //Audio Player for background and other audio sources
     [SerializeField] AudioSource audioplayer;
+
+    //Checks if player is connected with the ground
     private bool isGrounded = false;
+
+    //Player rigidbody
     Rigidbody rb;
 
     // Start is called before the first frame update
@@ -40,36 +55,50 @@ public class PlayerController : MonoBehaviour
             //dojump = true;
             rb.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
         }
+
+
         if (Input.GetKey(KeyCode.LeftShift))
         {
             transform.Translate(Vector3.right * Time.deltaTime * dashSpeed);           
         }
-        //*- if Mouse1 is clicked = dash to nearest enemy
-        //More research needed on how to do this -*
+
 
     }
 
 
     private void FixedUpdate()
-    {   
-       //Jumping code goes here instead
+    {
+        //Edited jumping code.
+        //Needs reviewing. It breaks the jump every time.
+        //Unsure how to fix currently.
+        
+        //if (isGrounded == true && Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    rb.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
+        //}
 
     }
 
+
+    //If the player collides with the ground after jumping, they are allowed to jump again
     private void OnCollisionEnter(Collision collision)
     {
         isGrounded = true;
     }
 
-
+    //If the player is in the air, the player will not be able to jump again until they collide with the ground
     private void OnCollisionExit(Collision collision)
     {
-        isGrounded = false; 
+        isGrounded = false;
     }
+
+
 
     private void OnTriggerEnter(Collider collision)
     {
-
+        // If the player collides or falls into water
+        //The water droplet sound will player
+        //And the player dies and the game resets
         if (collision.tag == "Water")
         {
             audioplayer.Play();
@@ -78,7 +107,9 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Game Over");
         }
 
-
+        //If the player collides/collects a coin
+        //their score will be increased
+        //and the coin game Object will disappear from the scene
         if (collision.gameObject.CompareTag("Coin"))
         {
             score++;
@@ -90,7 +121,7 @@ public class PlayerController : MonoBehaviour
         //Collision with spring forces player into the air
         if (collision.gameObject.CompareTag("Spring"))
         {
-            rb.AddForce(Vector3.up * sprintHeight, ForceMode.Impulse);
+            rb.AddForce(Vector3.up * springHeight, ForceMode.Impulse);
         }
     }
 }
