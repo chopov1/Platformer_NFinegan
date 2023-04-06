@@ -99,6 +99,7 @@ public class PlayerController : MonoBehaviour
         // If the player collides or falls into water
         //The water droplet sound will player
         //And the player dies and the game resets
+        //note: compare tag 
         if (collision.tag == "Water")
         {
             audioplayer.Play();
