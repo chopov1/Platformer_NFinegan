@@ -29,10 +29,14 @@ public class PlayerController : MonoBehaviour
     //Player rigidbody
     Rigidbody rb;
 
+    //Reference to the Score UI
+    public UIScore uiScore;
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        uiScore = GameObject.FindObjectOfType<UIScore>();
     }
 
     // Update is called once per frame
@@ -104,7 +108,7 @@ public class PlayerController : MonoBehaviour
         {
             audioplayer.Play();
             //need to add a delay to game over so you can hear sound effect before reset
-            //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             Debug.Log("Game Over");
         }
 
@@ -117,6 +121,7 @@ public class PlayerController : MonoBehaviour
             collision.gameObject.SetActive(false);
             Debug.Log($"Score: {score}");
             Instantiate(collision.gameObject);
+            uiScore.Score = score;
         }
 
         //Collision with spring forces player into the air

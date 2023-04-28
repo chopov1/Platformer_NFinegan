@@ -2,23 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UITimer : MonoBehaviour
 {
     public float totalTime;
     private float timeRemaining;
-    private Text timerText;
+    private TextMeshProUGUI timerText;
 
     void Start()
     {
         timeRemaining = totalTime;
-        timerText = GetComponent<Text>();
+        timerText = GetComponent<TextMeshProUGUI>();
     }
 
     void Update()
     {
-        //Unsure help to implement time onto the UI
-        //This goes the same for points
-        //Feedback would be appreciated
+        // Time remaining update
+        timeRemaining -= Time.deltaTime;
+
+        // Minutes and seconds conversion
+        int minutes = Mathf.FloorToInt(timeRemaining / 60);
+        int seconds = Mathf.FloorToInt(timeRemaining % 60);
+
+        // Timer text update
+        timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 }
