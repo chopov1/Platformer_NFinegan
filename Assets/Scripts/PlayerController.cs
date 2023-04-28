@@ -53,49 +53,41 @@ public class PlayerController : MonoBehaviour
             transform.Translate(Vector3.left * Time.deltaTime * speed);
         }
 
-        if (isGrounded == true && Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetAxis("Jump") > 0 && isGrounded == true)
         {
             //Jump
-            //dojump = true;
             rb.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
+            isGrounded = false;
         }
-
 
         if (Input.GetKey(KeyCode.LeftShift))
         {
-            transform.Translate(Vector3.right * Time.deltaTime * dashSpeed);           
+
+            if (Input.GetAxisRaw("Horizontal") != 0f)
+            {
+                // Dash left or right based on whcih way the player is facing
+                transform.Translate(Vector3.right * Input.GetAxisRaw("Horizontal") * Time.deltaTime * dashSpeed);
+            }
         }
-
-
     }
 
 
     private void FixedUpdate()
     {
-        //Edited jumping code.
-        //Needs reviewing. It breaks the jump every time.
-        //Unsure how to fix currently.
-        
-        //if (isGrounded == true && Input.GetKeyDown(KeyCode.Space))
-        //{
-        //    rb.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
-        //}
+        // Check if player is touching the ground
+        RaycastHit collided;
+        if (Physics.Raycast(transform.position, -Vector3.up, out collided, 1.1f))
+        {
+            isGrounded = true;
+        }
 
+        //If the player is not grounded
+        //Allow them to jump again
+        if (!isGrounded)
+        {
+            rb.AddForce(Vector3.down * 10f);
+        }
     }
-
-
-    //If the player collides with the ground after jumping, they are allowed to jump again
-    private void OnCollisionEnter(Collision collision)
-    {
-        isGrounded = true;
-    }
-
-    //If the player is in the air, the player will not be able to jump again until they collide with the ground
-    private void OnCollisionExit(Collision collision)
-    {
-        isGrounded = false;
-    }
-
 
 
     private void OnTriggerEnter(Collider collision)

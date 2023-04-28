@@ -14,7 +14,7 @@ public class LevelChange : MonoBehaviour
         if (other.gameObject.CompareTag("Player") && gameObject.CompareTag("LevelTwo"))
         {
             //Load the specified scene
-            SceneManager.LoadScene(_sceneChange);
+            SceneManager.LoadScene(sceneChange);
         }
 
         // Check if colliding object is player

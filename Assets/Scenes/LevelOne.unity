@@ -738,6 +738,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneChange: LevelTwo
+  _sceneChange: LevelThree
 --- !u!1 &424007115
 GameObject:
   m_ObjectHideFlags: 0
@@ -2129,7 +2130,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 20
-  jumpHeight: 20
+  jumpHeight: 5
   dashSpeed: 20
   score: 0
   springHeight: 30

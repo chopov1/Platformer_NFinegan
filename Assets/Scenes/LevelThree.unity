@@ -319,7 +319,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 58aef42fcfc18ea4c96645a0c91cdf51, type: 2}
+  - {fileID: 2100000, guid: 1cb148da5e745c94c8df8c63037a717c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -858,7 +858,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 58aef42fcfc18ea4c96645a0c91cdf51, type: 2}
+  - {fileID: 2100000, guid: 1cb148da5e745c94c8df8c63037a717c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2017,7 +2017,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 20
-  jumpHeight: 20
+  jumpHeight: 5
   dashSpeed: 20
   score: 0
   springHeight: 30
