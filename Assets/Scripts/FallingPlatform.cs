@@ -25,12 +25,17 @@ public class FallingPlatform : MonoBehaviour
     void Fall()
     {
         rb.isKinematic = false;
-        //call reset method here
+        //Resets platform
+        Invoke("Reset", resetPlatform);
     }
 
     private void Reset()
     {
-        //reset platform code goes here
+        //resets the platforms position
+        transform.position = startingPosition;
+        //resets the platforms rotation
+        transform.rotation = Quaternion.identity;
+        rb.isKinematic = true;
     }
 
     void OnCollisionEnter(Collision other)

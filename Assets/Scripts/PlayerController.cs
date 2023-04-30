@@ -32,6 +32,9 @@ public class PlayerController : MonoBehaviour
     //Reference to the Score UI
     public UIScore uiScore;
 
+    public AudioSource jumpSound;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -58,6 +61,7 @@ public class PlayerController : MonoBehaviour
             //Jump
             rb.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
             isGrounded = false;
+            jumpSound.Play();
         }
 
         if (Input.GetKey(KeyCode.LeftShift))

@@ -527,7 +527,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 2ecabb047ad76a94f8f6a1568b6b4879, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0.489
   m_Pitch: 1
   Loop: 0
@@ -996,7 +996,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 3f8b5c5baeb7546418413481a277ebb1, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -2023,6 +2023,7 @@ MonoBehaviour:
   springHeight: 30
   audioplayer: {fileID: 302384554}
   uiScore: {fileID: 0}
+  jumpSound: {fileID: 531469272}
 --- !u!65 &956863279
 BoxCollider:
   m_ObjectHideFlags: 0

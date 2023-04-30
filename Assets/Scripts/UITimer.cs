@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class UITimer : MonoBehaviour
 {
@@ -27,5 +28,15 @@ public class UITimer : MonoBehaviour
 
         // Timer text update
         timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+
+
+        //if the timer reachers 0
+        //then game over
+        //reset level/scene
+        if (timeRemaining <= 0)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            Debug.Log("Game Over");
+        }
     }
 }

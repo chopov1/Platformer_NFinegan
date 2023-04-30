@@ -527,7 +527,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 2ecabb047ad76a94f8f6a1568b6b4879, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0.489
   m_Pitch: 1
   Loop: 0
@@ -1109,8 +1109,8 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 3f8b5c5baeb7546418413481a277ebb1, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 1
+  m_PlayOnAwake: 0
+  m_Volume: 0.204
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1925,7 +1925,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
@@ -2136,6 +2136,7 @@ MonoBehaviour:
   springHeight: 30
   audioplayer: {fileID: 302384554}
   uiScore: {fileID: 0}
+  jumpSound: {fileID: 531469272}
 --- !u!65 &956863279
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3845,6 +3846,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 427676855}
     m_Modifications:
+    - target: {fileID: 5984373199888568361, guid: 68c34ec928615ef4393477f2caa8796c, type: 3}
+      propertyPath: resetPlatform
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 5984373199888568365, guid: 68c34ec928615ef4393477f2caa8796c, type: 3}
       propertyPath: m_RootOrder
       value: 3
