@@ -32,6 +32,7 @@ public class PlayerController : MonoBehaviour
     //Reference to the Score UI
     public UIScore uiScore;
 
+    //Audio Source for jump sound
     public AudioSource jumpSound;
 
 
@@ -103,10 +104,10 @@ public class PlayerController : MonoBehaviour
         if (collision.tag == "Water")
         {
             audioplayer.Play();
-            //need to add a delay to game over so you can hear sound effect before reset
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-            Debug.Log("Game Over");
+            //Adds a .5 second delay before calling the ResetScene Methood
+            Invoke("ResetScene", .5f);
         }
+
 
         //If the player collides/collects a coin
         //their score will be increased
@@ -125,6 +126,12 @@ public class PlayerController : MonoBehaviour
         {
             rb.AddForce(Vector3.up * springHeight, ForceMode.Impulse);
         }
+    }
+
+    void ResetScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        Debug.Log("Game Over");
     }
 }
 
