@@ -35,7 +35,6 @@ public class PlayerController : MonoBehaviour
     //Audio Source for jump sound
     public AudioSource jumpSound;
 
-
     // Start is called before the first frame update
     void Start()
     {

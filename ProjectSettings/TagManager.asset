@@ -11,6 +11,7 @@ TagManager:
   - Coin
   - LevelTwo
   - LevelThree
+  - Wall
   layers:
   - Default
   - TransparentFX
