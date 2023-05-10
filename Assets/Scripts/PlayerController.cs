@@ -35,6 +35,9 @@ public class PlayerController : MonoBehaviour
     //Audio Source for jump sound
     public AudioSource jumpSound;
 
+    //Audio source for coin sound
+    public AudioSource coinSound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -120,9 +123,10 @@ public class PlayerController : MonoBehaviour
         {
             score++;
             collision.gameObject.SetActive(false);
-            Debug.Log($"Score: {score}");
             Instantiate(collision.gameObject);
             uiScore.Score = score;
+            coinSound.Play();
+
         }
 
 
