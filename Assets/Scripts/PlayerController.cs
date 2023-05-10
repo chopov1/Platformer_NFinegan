@@ -38,6 +38,7 @@ public class PlayerController : MonoBehaviour
     //Audio source for coin sound
     public AudioSource coinSound;
 
+
     // Start is called before the first frame update
     void Start()
     {
