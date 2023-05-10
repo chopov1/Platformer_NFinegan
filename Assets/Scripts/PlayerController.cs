@@ -106,6 +106,11 @@ public class PlayerController : MonoBehaviour
             //Adds a .5 second delay before calling the ResetScene Methood
             Invoke("ResetScene", .5f);
         }
+        if (collision.tag == "Spike")
+        {
+            //Adds a .5 second delay before calling the ResetScene Methood
+            Invoke("ResetScene", .2f);
+        }
 
 
         //If the player collides/collects a coin
@@ -119,6 +124,9 @@ public class PlayerController : MonoBehaviour
             Instantiate(collision.gameObject);
             uiScore.Score = score;
         }
+
+
+
 
         //Collision with spring forces player into the air
         if (collision.gameObject.CompareTag("Spring"))

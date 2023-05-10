@@ -12,6 +12,7 @@ TagManager:
   - LevelTwo
   - LevelThree
   - Wall
+  - Spike
   layers:
   - Default
   - TransparentFX
