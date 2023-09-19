@@ -31,7 +31,6 @@ public class RhythmManager : MonoBehaviour
 
     void Start()
     {
-        bpm = 120;
         Instance = this;
         audioSource = GetComponent<AudioSource>();
         accent = signatureHi;
