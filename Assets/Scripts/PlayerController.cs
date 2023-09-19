@@ -8,17 +8,20 @@ public class PlayerController : MonoBehaviour
     //Player movement speed
     [SerializeField] int speed;
 
-    //Player jump height
-    [SerializeField] int jumpHeight;
-
-    //Player dash speed
-    [SerializeField] int dashSpeed = 20;
+    //Player dash force
+    [SerializeField, Tooltip("Adjust this as needed when changing physics settings")] 
+    int dashForce;
 
     //Score tracker
     [SerializeField] float score;
 
     //Player spring height
-    [SerializeField] int springHeight = 30;
+    [SerializeField, Tooltip("How intense the gravity is. Higher number = more gavity")] 
+    int gravityScale = 30;
+
+    //Player spring height
+    [SerializeField]
+    int springHeight = 30;
 
     //Audio Player for background and other audio sources
     [SerializeField] AudioSource audioplayer;
@@ -33,11 +36,12 @@ public class PlayerController : MonoBehaviour
     public UIScore uiScore;
 
     //Audio Source for jump sound
-    public AudioSource jumpSound;
+    public AudioClip jumpSound;
 
     //Audio source for coin sound
-    public AudioSource coinSound;
+    public AudioClip coinSound;
 
+    bool currentBeatHasInput;
 
     // Start is called before the first frame update
     void Start()
@@ -46,36 +50,18 @@ public class PlayerController : MonoBehaviour
         uiScore = GameObject.FindObjectOfType<UIScore>();
     }
 
+    protected bool OnBeat()
+    {
+        return RhythmManager.Instance.IsOnBeat();
+    }
+
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.D))
+        CheckMovement();
+        if(!OnBeat())
         {
-            //Move Right
-            transform.Translate(Vector3.right * Time.deltaTime * speed);
-        }
-        if (Input.GetKey(KeyCode.A))
-        {
-            //Move Left
-            transform.Translate(Vector3.left * Time.deltaTime * speed);
-        }
-
-        if (Input.GetAxis("Jump") > 0 && isGrounded == true)
-        {
-            //Jump
-            rb.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
-            isGrounded = false;
-            jumpSound.Play();
-        }
-
-        if (Input.GetKey(KeyCode.LeftShift))
-        {
-
-            if (Input.GetAxisRaw("Horizontal") != 0f)
-            {
-                // Dash left or right based on whcih way the player is facing
-                transform.Translate(Vector3.right * Input.GetAxisRaw("Horizontal") * Time.deltaTime * dashSpeed);
-            }
+            currentBeatHasInput = false;
         }
     }
 
@@ -93,8 +79,45 @@ public class PlayerController : MonoBehaviour
         //Allow them to jump again
         if (!isGrounded)
         {
-            rb.AddForce(Vector3.down * 10f);
+            rb.AddForce(Vector3.down * gravityScale);
         }
+
+    }
+
+    private void CheckMovement()
+    {
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            if (canMove())
+            {
+                rb.AddForce(Vector3.right * dashForce, ForceMode.Impulse);
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            if (canMove())
+            {
+                rb.AddForce(Vector3.left * dashForce, ForceMode.Impulse);
+            }
+        }
+        if (Input.GetKey(KeyCode.W) && isGrounded == true)
+        {
+            if (canMove())
+            {
+                rb.AddForce(Vector3.up * (dashForce / 2), ForceMode.Impulse);
+                isGrounded = false;
+            }
+        }
+    }
+
+    private bool canMove()
+    {
+        if(!currentBeatHasInput && OnBeat())
+        {
+            currentBeatHasInput = true;
+            return true;
+        }
+        return false;
     }
 
 
@@ -126,13 +149,9 @@ public class PlayerController : MonoBehaviour
             collision.gameObject.SetActive(false);
             Instantiate(collision.gameObject);
             uiScore.Score = score;
-            coinSound.Play();
+            //coinSound.Play();
 
         }
-
-
-
-
         //Collision with spring forces player into the air
         if (collision.gameObject.CompareTag("Spring"))
         {
