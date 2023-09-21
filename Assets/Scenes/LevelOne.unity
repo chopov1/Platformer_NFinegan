@@ -3981,7 +3981,7 @@ MonoBehaviour:
   gain: 0.5
   signatureHi: 4
   signatureLo: 4
-  inputBufScale: 1.1
+  inputBufScale: 0.4
 --- !u!82 &1098075616
 AudioSource:
   m_ObjectHideFlags: 0
