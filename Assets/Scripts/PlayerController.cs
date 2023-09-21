@@ -8,6 +8,9 @@ public class PlayerController : MonoBehaviour
     //Player movement speed
     [SerializeField] int speed;
 
+    //Player jump count
+    int jumpCount = 0;
+
     //Player dash force
     [SerializeField, Tooltip("Adjust this as needed when changing physics settings")] 
     int dashForce;
@@ -73,6 +76,7 @@ public class PlayerController : MonoBehaviour
         if (Physics.Raycast(transform.position, -Vector3.up, out collided, 1.1f))
         {
             isGrounded = true;
+            jumpCount = 0; //Resets jumpCount
         }
 
         //If the player is not grounded
@@ -100,11 +104,12 @@ public class PlayerController : MonoBehaviour
                 rb.AddForce(Vector3.left * dashForce, ForceMode.Impulse);
             }
         }
-        if (Input.GetKey(KeyCode.W) && isGrounded == true)
+        if (Input.GetKeyDown(KeyCode.W) && jumpCount < 3) // Checks if the player can still jump
         {
             if (canMove())
             {
                 rb.AddForce(Vector3.up * (dashForce / 2), ForceMode.Impulse);
+                jumpCount++;
                 isGrounded = false;
             }
         }
